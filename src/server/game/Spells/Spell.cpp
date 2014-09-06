@@ -6156,8 +6156,8 @@ SpellCastResult Spell::CheckItems()
                 break;
             }
 			case SPELL_EFFECT_GetItemEntry: {
-				m_targets.GetItemTargetEntry()
-			};
+				m_targets.GetItemTargetEntry();
+			}
 
             case SPELL_EFFECT_WEAPON_DAMAGE:
             case SPELL_EFFECT_WEAPON_DAMAGE_NOSCHOOL:
