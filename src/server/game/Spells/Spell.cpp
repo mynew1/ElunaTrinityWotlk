@@ -6151,7 +6151,6 @@ SpellCastResult Spell::CheckItems()
 			case SPELL_EFFECT_GetItemEntry: 
 			{
 				m_targets.GetItemTargetEntry();
-				
 			}
 
             case SPELL_EFFECT_WEAPON_DAMAGE:

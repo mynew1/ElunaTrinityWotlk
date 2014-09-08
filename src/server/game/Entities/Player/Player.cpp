@@ -17930,7 +17930,8 @@ void Player::_LoadAuras(PreparedQueryResult result, uint32 timediff)
             uint32 spellid = fields[1].GetUInt32();
             uint8 effmask = fields[2].GetUInt8();
             uint8 recalculatemask = fields[3].GetUInt8();
-            uint8 stackcount = fields[4].GetUInt8();
+        //  uint8 stackcount = fields[4].GetUInt8();
+			uint32 stackcount = fields[4].GetUInt32();
             damage[0] = fields[5].GetInt32();
             damage[1] = fields[6].GetInt32();
             damage[2] = fields[7].GetInt32();
