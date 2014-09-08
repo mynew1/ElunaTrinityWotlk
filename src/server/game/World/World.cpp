@@ -58,9 +58,6 @@
 #include "SystemConfig.h"
 #include "TicketMgr.h"
 #include "TransportMgr.h"
-#ifdef ELUNA
-#include "LuaEngine.h"
-#endif
 #include "Unit.h"
 #include "VMapFactory.h"
 #include "WardenCheckMgr.h"
