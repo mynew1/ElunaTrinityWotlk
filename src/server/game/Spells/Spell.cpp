@@ -6155,7 +6155,8 @@ SpellCastResult Spell::CheckItems()
 
                 break;
             }
-			case SPELL_EFFECT_GetItemEntry: {
+			case SPELL_EFFECT_GetItemEntry: 
+			{	
 				m_targets.GetItemTargetEntry();
 			}
 
