@@ -26,6 +26,7 @@
 #include "ObjectMgr.h"
 #include "World.h"
 #include "GroupMgr.h"
+#include "Config.h"
 
 namespace lfg
 {
@@ -347,6 +348,8 @@ LfgCompatibility LFGQueue::CheckCompatibility(LfgGuidList check)
     // Check if more than one LFG group and number of players joining
     uint8 numPlayers = 0;
     uint8 numLfgGroups = 0;
+	uint8 LFGnumPlayer_Add = sConfigMgr->GetIntDefault("LFGnumPlayer_Add", 0);
+	uint8 z = 0;
     for (LfgGuidList::const_iterator it = check.begin(); it != check.end() && numLfgGroups < 2 && numPlayers <= MAXGROUPSIZE; ++it)
     {
         uint64 guid = (*it);
@@ -372,6 +375,17 @@ LfgCompatibility LFGQueue::CheckCompatibility(LfgGuidList check)
         }
     }
 
+	if (z == 0 && numPlayers > (MAXGROUPSIZE - LFGnumPlayer_Add))
+	{
+		numPlayers = MAXGROUPSIZE;
+	}
+
+
+	if (z == 0 && numPlayers == (MAXGROUPSIZE - LFGnumPlayer_Add))
+	{
+		numPlayers = numPlayers + LFGnumPlayer_Add;
+		z = z + 1;
+	}
     // Group with less that MAXGROUPSIZE members always compatible
     if (check.size() == 1 && numPlayers != MAXGROUPSIZE)
     {
