@@ -128,6 +128,15 @@ typedef std::list<SpellModifier*> SpellModList;
 
 typedef std::list<uint64> WhisperListContainer;
 
+struct ReforgeData
+{
+	uint32 increase, decrease;
+	int32 stat_value;
+};
+
+typedef std::unordered_map<uint32, ReforgeData> ReforgeMapType;
+
+
 struct SpellCooldown
 {
     time_t end;
@@ -2311,6 +2320,7 @@ class Player : public Unit, public GridObject<Player>
 
         //bool isActiveObject() const { return true; }
         bool CanSeeSpellClickOn(Creature const* creature) const;
+		ReforgeMapType reforgeMap; // reforgeMap[iGUID] = ReforgeData
 
         uint32 GetChampioningFaction() const { return m_ChampioningFaction; }
         void SetChampioningFaction(uint32 faction) { m_ChampioningFaction = faction; }

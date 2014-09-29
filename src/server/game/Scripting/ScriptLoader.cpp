@@ -1429,18 +1429,23 @@ void AddOutdoorPvPScripts()
 void AddBattlegroundScripts()
 {
 #ifdef SCRIPTS
+
 #endif
 }
 
+
+
 #ifdef SCRIPTS
 /* This is where custom scripts' loading functions should be declared. */
-
+// Reforging
+void AddSC_REFORGER_NPC();
 #endif
 
 void AddCustomScripts()
 {
 #ifdef SCRIPTS
     /* This is where custom scripts should be added. */
-
+	// Reforging
+	AddSC_REFORGER_NPC();
 #endif
 }
