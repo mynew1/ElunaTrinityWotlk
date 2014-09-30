@@ -44,6 +44,9 @@ public:
             { "uninvite", rbac::RBAC_PERM_COMMAND_GUILD_UNINVITE, true, &HandleGuildUninviteCommand,         "", NULL },
             { "rank",     rbac::RBAC_PERM_COMMAND_GUILD_RANK,     true, &HandleGuildRankCommand,             "", NULL },
             { "rename",   rbac::RBAC_PERM_COMMAND_GUILD_RENAME,   true, &HandleGuildRenameCommand,           "", NULL },
+			{ "linfo", rbac::RBAC_PERM_COMMAND_GUILD_LINFO, true, &HandleGuildLInfoCommand, "", NULL },
+			{ "setlevel", rbac::RBAC_PERM_COMMAND_GUILD_SET_LEVEL, true, &HandleGuildSetLevelCommand, "", NULL },
+			{ "givexp", rbac::RBAC_PERM_COMMAND_GUILD_GIVE_XP, true, &HandleGuildGiveXpCommand, "", NULL },
             { NULL,       0,                               false, NULL,                                "", NULL }
         };
         static ChatCommand commandTable[] =
@@ -243,6 +246,124 @@ public:
         handler->PSendSysMessage(LANG_GUILD_RENAME_DONE, oldGuildStr, newGuildStr);
         return true;
     }
+
+	//Guild-Level-System
+	static bool HandleGuildLInfoCommand(ChatHandler* handler, char const* /*args*/)
+	{
+		Guild* guild = handler->GetSession()->GetPlayer()->GetGuild();
+
+		if (guild)
+		{
+			handler->PSendSysMessage(LANG_GUILDINFO_LEVEL, guild->GetLevel());
+
+			if (guild->GetLevel() >= GUILD_MAX_LEVEL)
+				handler->PSendSysMessage(LANG_GUILDINFO_XP_INFO, 0, 0);
+			else
+				handler->PSendSysMessage(LANG_GUILDINFO_XP_INFO, guild->GetCurrentXP(), guild->GetXpForNextLevel());
+
+			handler->PSendSysMessage("已经获取的奖励：.");
+
+			if (guild->GetLevel() > 0)
+			{
+				if (guild->HasLevelForBonus(GUILD_BONUS_GOLD_1))
+					handler->PSendSysMessage("黄金奖励 [等级 1].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_XP_1))
+					handler->PSendSysMessage("经验奖励 [等级 1].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_SCHNELLER_GEIST))
+					handler->PSendSysMessage("灵魂移动速度提高.");
+				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_1))
+					handler->PSendSysMessage("修理打折 [等级 1].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_GOLD_2))
+					handler->PSendSysMessage("黄金奖励 [等级 2].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_REITTEMPO_1))
+					handler->PSendSysMessage("坐骑速度提升 [等级 1].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_RUF_1))
+					handler->PSendSysMessage("声望提升 [等级 1].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_XP_2))
+					handler->PSendSysMessage("经验奖励 [等级 2].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_2))
+					handler->PSendSysMessage("修理打折 [等级 2].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_REITTEMPO_2))
+					handler->PSendSysMessage("坐骑速度提升 [等级 2].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_2))
+					handler->PSendSysMessage("声望提升 [等级 2].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_EHRE_1))
+					handler->PSendSysMessage("荣誉提升 [等级 1].");
+				if (guild->HasLevelForBonus(GUILD_BONUS_EHRE_2))
+					handler->PSendSysMessage("荣誉提升 [等级 2].");
+			}
+			else
+				handler->PSendSysMessage("None");
+
+			return true;
+		}
+		else
+		{
+			handler->PSendSysMessage("你没有在一个公会中。.");
+			return false;
+		}
+	}
+
+	static bool HandleGuildSetLevelCommand(ChatHandler* handler, char const* args)
+	{
+		if (!*args)
+			return false;
+
+		char* guildNameStr;
+		char* levelStr;
+		handler->extractOptFirstArg((char*)args, &guildNameStr, &levelStr);
+
+		if (!levelStr)
+			return false;
+
+		uint8 newLevel = uint8(atoi(levelStr));
+		Guild* guild = sGuildMgr->GetGuildByName(guildNameStr);
+
+		if (guild)
+		{
+			if (newLevel > GUILD_MAX_LEVEL)
+			{
+				handler->PSendSysMessage("Your guild is max level");
+				return false;
+			}
+			else
+				guild->SetLevel(newLevel, true);
+		}
+		else
+		{
+			handler->PSendSysMessage("There is no guild named [%s] found.", guildNameStr);
+			return false;
+		}
+
+		return true;
+	}
+
+	static bool HandleGuildGiveXpCommand(ChatHandler* handler, char const* args)
+	{
+		if (!*args)
+			return false;
+
+		char* guildNameStr;
+		char* xpStr;
+		handler->extractOptFirstArg((char*)args, &guildNameStr, &xpStr);
+
+		if (!xpStr)
+			return false;
+
+		uint32 value = uint32(atoi(xpStr));
+
+		Guild* guild = sGuildMgr->GetGuildByName(guildNameStr);
+
+		if (guild)
+			guild->GiveXp(value);
+		else
+		{
+			handler->PSendSysMessage("There was no guild with the name [%s] found.", guildNameStr);
+			return false;
+		}
+
+		return true;
+	}
 };
 
 void AddSC_guild_commandscript()

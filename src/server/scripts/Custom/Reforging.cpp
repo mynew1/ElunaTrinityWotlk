@@ -1,6 +1,6 @@
 #include "ScriptPCH.h"
-#include "Config.h"
-using namespace std;
+
+
 /*
 Reforging by Rochet2
 https://rochet2.github.io/?page=Transmogrification
@@ -23,7 +23,16 @@ Edit IsReforgable is you want to tweak requirements
 static const bool send_cache_packets = true;    // change player cache?
 
 // Remember to add to GetStatName too
-static const ItemModType statTypes[] = { ITEM_MOD_SPIRIT, ITEM_MOD_DODGE_RATING, ITEM_MOD_PARRY_RATING, ITEM_MOD_HIT_RATING, ITEM_MOD_CRIT_RATING, ITEM_MOD_HASTE_RATING, ITEM_MOD_EXPERTISE_RATING };
+static const ItemModType statTypes[] = 
+{ 
+	ITEM_MOD_SPIRIT, 
+	ITEM_MOD_DODGE_RATING, 
+	ITEM_MOD_PARRY_RATING, 
+	ITEM_MOD_HIT_RATING, 
+	ITEM_MOD_CRIT_RATING, 
+	ITEM_MOD_HASTE_RATING, 
+	ITEM_MOD_EXPERTISE_RATING 
+};
 static const uint8 stat_type_max = sizeof(statTypes) / sizeof(*statTypes);
 
 
@@ -32,13 +41,14 @@ static const char* GetStatName(uint32 ItemStatType)
 {
 	switch (ItemStatType)
 	{
-	case ITEM_MOD_SPIRIT: return "精神."; break;
-	case ITEM_MOD_DODGE_RATING: return "躲闪等级."; break;
-	case ITEM_MOD_PARRY_RATING: return "招架等级."; break;
-	case ITEM_MOD_HIT_RATING: return "命中等级."; break;
-	case ITEM_MOD_CRIT_RATING: return "暴击等级."; break;
-	case ITEM_MOD_EXPERTISE_RATING: return "精准等级."; break;
-	case ITEM_MOD_HASTE_RATING: return "急速等级.."; break;
+	case ITEM_MOD_SPIRIT: return "|cFFCC3300 精神.|r"; break;
+	case ITEM_MOD_DODGE_RATING: return "|cFFCC3300 躲闪等级.|r"; break;
+	case ITEM_MOD_PARRY_RATING: return "|cFFCC3300 招架等级.|r"; break;
+	case ITEM_MOD_HIT_RATING: return "|cFFCC3300 命中等级.|r"; break;
+	case ITEM_MOD_CRIT_RATING: return "|cFFCC3300 暴击等级.|r"; break;
+	case ITEM_MOD_EXPERTISE_RATING: return "|cFFCC3300 精准等级.|r"; break;
+	case ITEM_MOD_HASTE_RATING: return "|cFFCC3300 急速等级.|r"; break;
+
 	default: return NULL;
 	}
 }
@@ -47,25 +57,25 @@ static const char* GetSlotName(uint8 slot, WorldSession* session)
 {
 	switch (slot)
 	{
-	case EQUIPMENT_SLOT_HEAD: return "头部.";
-	case EQUIPMENT_SLOT_NECK: return "项链.";
-	case EQUIPMENT_SLOT_SHOULDERS: return "肩膀.";
-	case EQUIPMENT_SLOT_BODY: return "衬衣.";
-	case EQUIPMENT_SLOT_CHEST: return "胸部.";
-	case EQUIPMENT_SLOT_WAIST: return "腰带.";
-	case EQUIPMENT_SLOT_LEGS: return "裤子.";
-	case EQUIPMENT_SLOT_FEET: return "鞋子.";
-	case EQUIPMENT_SLOT_WRISTS: return "护腕.";
-	case EQUIPMENT_SLOT_HANDS: return "手套.";
-	case EQUIPMENT_SLOT_FINGER1: return "戒指1.";
-	case EQUIPMENT_SLOT_FINGER2: return "戒指2.";
-	case EQUIPMENT_SLOT_TRINKET1: return "饰品1.";
-	case EQUIPMENT_SLOT_TRINKET2: return "饰品2.";
+	case EQUIPMENT_SLOT_HEAD: return "|cFF006600 头部.|r";
+	case EQUIPMENT_SLOT_NECK: return "|cFF006600 项链.|r";
+	case EQUIPMENT_SLOT_SHOULDERS: return "|cFF006600 肩膀.|r";
+	case EQUIPMENT_SLOT_BODY: return "|cFF006600 衬衣.|r";
+	case EQUIPMENT_SLOT_CHEST: return "|cFF006600 胸部.|r";
+	case EQUIPMENT_SLOT_WAIST: return "|cFF006600 腰带.|r";
+	case EQUIPMENT_SLOT_LEGS: return "|cFF006600 裤子.|r";
+	case EQUIPMENT_SLOT_FEET: return "|cFF006600 鞋子.|r";
+	case EQUIPMENT_SLOT_WRISTS: return "|cFF006600 护腕.|r";
+	case EQUIPMENT_SLOT_HANDS: return "|cFF006600 手套.|r";
+	case EQUIPMENT_SLOT_FINGER1: return "|cFF006600 戒指1.|r";
+	case EQUIPMENT_SLOT_FINGER2: return "|cFF006600 戒指2.|r";
+	case EQUIPMENT_SLOT_TRINKET1: return "|cFF006600 饰品1.|r";
+	case EQUIPMENT_SLOT_TRINKET2: return "|cFF006600 饰品2.|r";
 	case EQUIPMENT_SLOT_BACK: return "返回.";
-	case EQUIPMENT_SLOT_MAINHAND: return "主手.";
-	case EQUIPMENT_SLOT_OFFHAND: return "副手.";
-	case EQUIPMENT_SLOT_TABARD: return "战袍.";
-	case EQUIPMENT_SLOT_RANGED: return "远程武器.";
+	case EQUIPMENT_SLOT_MAINHAND: return "|cFF006600 主手.|r";
+	case EQUIPMENT_SLOT_OFFHAND: return "|cFF006600 副手.|r";
+	case EQUIPMENT_SLOT_TABARD: return "|cFF006600 战袍.|r";
+	case EQUIPMENT_SLOT_RANGED: return "|cFF006600 远程武器.|r";
 	default: return NULL;
 	}
 }
@@ -375,7 +385,7 @@ static void UpdatePlayerReforgeStats(Item* invItem, Player* player, uint32 decre
 	data.stat_value = stat_diff;
 	player->_ApplyItemMods(invItem, invItem->GetSlot(), true);
 	// CharacterDatabase.PExecute("REPLACE INTO `custom_reforging` (`GUID`, `increase`, `decrease`, `stat_value`) VALUES (%u, %u, %u, %i)", guidlow, increase, decrease, stat_diff);
-	player->ModifyMoney(pProto->SellPrice < (10 * GOLD) ? (-10 * GOLD) : -(int32)pProto->SellPrice);
+	player->ModifyMoney(pProto->SellPrice < (300 * GOLD) ? (-300 * GOLD) : -(int32)pProto->SellPrice);
 	SendReforgePacket(player, invItem->GetEntry(), 0, &data);
 	// player->SaveToDB();
 }
@@ -558,7 +568,7 @@ public:
 					if (const char* stat_name = GetStatName(statTypes[i]))
 					{
 						std::ostringstream oss;
-						oss << stat_name << "  |cFF3ECB3C  + " << stat_diff << " |r";
+						oss << stat_name << "  |cFF0000CC + " << stat_diff << " |r";
 						player->ADD_GOSSIP_ITEM_EXTENDED(GOSSIP_ICON_INTERACT_1, oss.str(), sender, Melt(i, (uint8)pProto->ItemStat[action].ItemStatType), "你确定要重铸." + pProto->Name1 + "这件装备么？.", (pProto->SellPrice < (300 * GOLD) ? (300 * GOLD) : pProto->SellPrice), false);
 					}
 				}

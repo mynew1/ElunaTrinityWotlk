@@ -682,6 +682,9 @@ enum RBACPermissions
     RBAC_PERM_COMMAND_DEBUG_PHASE                            = 776, // only 4.3.4
     RBAC_PERM_COMMAND_MAILBOX                                = 777,
 
+	RBAC_PERM_COMMAND_GUILD_LINFO = 1000,
+	RBAC_PERM_COMMAND_GUILD_SET_LEVEL = 1001,
+	RBAC_PERM_COMMAND_GUILD_GIVE_XP = 1002,
     // custom permissions 1000+
     RBAC_PERM_MAX
 };
