@@ -23,7 +23,6 @@
 #include "World.h"
 #include "AchievementMgr.h"
 #include "ArenaTeamMgr.h"
-#include "AuctionHouseBot.h"
 #include "AuctionHouseMgr.h"
 #include "BattlefieldMgr.h"
 #include "BattlegroundMgr.h"
@@ -1592,9 +1591,6 @@ void World::SetInitialWorldSettings()
     TC_LOG_INFO("server.loading", "Loading Completed Achievements...");
     sAchievementMgr->LoadCompletedAchievements();
 
-    // Initialize AHBot settings before deleting expired auctions due to AHBot hooks
-    auctionbot->InitializeConfiguration();
-
     // Delete expired auctions before loading
     TC_LOG_INFO("server.loading", "Deleting expired auctions...");
     sAuctionMgr->DeleteExpiredAuctionsAtStartup();
@@ -1816,9 +1812,6 @@ void World::SetInitialWorldSettings()
 
     LoadCharacterNameData();
 
-    TC_LOG_INFO("server.loading", "Initialize AuctionHouseBot...");
-    auctionbot->Initialize();
-
     uint32 startupDuration = GetMSTimeDiffToNow(startupBegin);
 
     TC_LOG_INFO("server.worldserver", "World initialized in %u minutes %u seconds", (startupDuration / 60000), ((startupDuration % 60000) / 1000));
@@ -1986,7 +1979,6 @@ void World::Update(uint32 diff)
     /// <ul><li> Handle auctions when the timer has passed
     if (m_timers[WUPDATE_AUCTIONS].Passed())
     {
-        auctionbot->Update();
         m_timers[WUPDATE_AUCTIONS].Reset();
 
         ///- Update mails (return old mails with item, or delete them)
