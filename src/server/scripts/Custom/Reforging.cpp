@@ -71,7 +71,7 @@ static const char* GetSlotName(uint8 slot, WorldSession* session)
 	case EQUIPMENT_SLOT_FINGER2: return "|cFF006600 戒指2.|r";
 	case EQUIPMENT_SLOT_TRINKET1: return "|cFF006600 饰品1.|r";
 	case EQUIPMENT_SLOT_TRINKET2: return "|cFF006600 饰品2.|r";
-	case EQUIPMENT_SLOT_BACK: return "返回.";
+	case EQUIPMENT_SLOT_BACK: return "|cFF006600 背部.|r";
 	case EQUIPMENT_SLOT_MAINHAND: return "|cFF006600 主手.|r";
 	case EQUIPMENT_SLOT_OFFHAND: return "|cFF006600 副手.|r";
 	case EQUIPMENT_SLOT_TABARD: return "|cFF006600 战袍.|r";
