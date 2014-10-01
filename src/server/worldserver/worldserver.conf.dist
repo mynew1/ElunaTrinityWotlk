@@ -2813,3 +2813,380 @@ PacketSpoof.BanDuration = 86400
 #4 → 表示单人随机功能
 #算法为 随机本5人-填充数=需要的玩家数
 LFGnumPlayer_Add = 4
+
+###################################################################################################
+#    Transmogrification config
+###################################################################################################
+#
+#    设置
+#
+#    Logger.custom.transmog
+#        幻化日志记录，默认服务器显示  默认:    3, 服务器控制台
+#
+#    Transmogrification.EnableTransmogInfo
+#        是否启用NPC菜单幻化按钮
+#
+#    Transmogrification.TransmogNpcText
+#         进入幻化系统的NPC_text菜单 ID默认：50000
+#
+#    Transmogrification.Allowed
+#        一个列表，允许幻化的条目：默认：""全部 例子："6048"
+#
+#    Transmogrification.NotAllowed
+#        一个列表，不允许幻化的条目：默认:"" 例子："6048"
+
+Logger.custom.transmog = 3, Console Server
+
+Transmogrification.EnableTransmogInfo = 1
+Transmogrification.TransmogNpcText = 60000
+
+Transmogrification.Allowed = ""
+Transmogrification.NotAllowed = ""
+
+
+#    铜币的设置
+#    Transmogrification.ScaledCostModifier
+#        默认的成本乘数：默认：1.0
+#
+#    Transmogrification.CopperCost
+#        成本加上其他费用，可以是负数：默认：0
+#
+#    自定义成本组ScaledCostModifier和CopperCost参数，可以得到你想要的金额
+
+Transmogrification.ScaledCostModifier = 2.0
+Transmogrification.CopperCost = 200
+
+
+#    代币设置
+#    Transmogrification.RequireToken
+#        开启或关闭代币系统，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.TokenEntry
+#        代币系统所使用的物品编号：默认：49426（寒冰纹章）
+#
+#    Transmogrification.TokenAmount
+#        代币需要的数量，默认：1
+
+
+Transmogrification.RequireToken = 1
+Transmogrification.TokenEntry = 70002
+Transmogrification.TokenAmount = 10
+
+#########################
+#    要求设置
+####################################################################################################
+#    Transmogrification.AllowPoor
+#        是否允许粗糙品质（灰色）物品，作为幻化的目标或基础物品。默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.AllowCommon
+#        是否允许普通品质（白色）物品，作为幻化的目标或基础物品。默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.AllowUncommon
+#        是否允许优秀品质（绿色）物品，作为幻化的目标或基础物品。默认：1 (开启) 0 (关闭)。
+#
+#    Transmogrification.AllowRare
+#        是否允许精良品质（蓝色）物品，作为幻化的目标或基础物品。默认：1 (开启) 0 (关闭)。
+#
+#    Transmogrification.AllowEpic
+#        是否允许史诗品质（紫色）物品，作为幻化的目标或基础物品。默认：1 (开启) 0 (关闭)。
+#
+#    Transmogrification.AllowLegendary
+#        是否允许传说品质（橙色）物品，作为幻化的目标或基础物品。默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.AllowArtifact
+#        是否允许传奇品质（红色）物品，作为幻化的目标或基础物品。默认：0 (关闭) 1 (开启)
+#    Transmogrification.AllowHeirloom
+#        是否允许传家宝物品，作为幻化的目标或者基础物品。
+#
+#    Transmogrification.AllowMixedArmorTypes
+#        是否允许混合装备类型，默认：0 (关闭) 1 (开启)，例：允许布甲幻化成板甲
+#
+#    Transmogrification.AllowMixedWeaponTypes
+#        是否允许混合武器类型，默认：0 (关闭) 1 (开启)，例：允许斧头幻化成匕首
+#
+#    Transmogrification.AllowFishingPoles
+#        是否允许鱼竿参与幻化，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.IgnoreReqRace
+#        忽略来源物品所需的种族，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.IgnoreReqClass
+#        忽略来源物品所需的职业，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.IgnoreReqSkill
+#        忽略来源物品所需的专业，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.IgnoreReqSpell
+#        忽略来源物品所需的法术，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.IgnoreReqLevel
+#        忽略来源物品所需的等级，默认：0 (关闭) 1 (开启)
+#
+#    Transmogrification.IgnoreReqEvent
+#        忽略来源物品所需的事件，默认：0 (关闭) 1 (开启) 注：节日
+#
+#    Transmogrification.IgnoreReqStats
+#        忽略需要来源物品属性数 > 0的设置，默认：0 (关闭) 1 (开启)
+
+Transmogrification.AllowPoor = 1
+Transmogrification.AllowCommon = 1
+Transmogrification.AllowUncommon = 1
+Transmogrification.AllowRare = 1
+Transmogrification.AllowEpic = 1
+Transmogrification.AllowLegendary = 1
+Transmogrification.AllowArtifact = 1
+Transmogrification.AllowHeirloom = 1
+
+Transmogrification.AllowMixedArmorTypes = 1
+Transmogrification.AllowMixedWeaponTypes = 1
+Transmogrification.AllowFishingPoles = 0
+
+Transmogrification.IgnoreReqRace = 0
+Transmogrification.IgnoreReqClass = 0
+Transmogrification.IgnoreReqSkill = 0
+Transmogrification.IgnoreReqSpell = 0
+Transmogrification.IgnoreReqLevel = 0
+Transmogrification.IgnoreReqEvent = 0
+Transmogrification.IgnoreReqStats = 0
+
+#    功能设置
+#    Transmogrification.EnableSets
+#        启用/禁用设置功能。如果你想永久禁用 源码 Transmogrification.h 默认：1开启 0 禁用
+#
+#    Transmogrification.MaxSets
+#        玩家最大可以保留的效果：默认：10
+#
+#    Transmogrification.EnableSetInfo
+#        是否采用特征信息系统：默认：1
+#
+#    Transmogrification.SetNpcText
+#        特征信息：进入 NPC_text菜单ID  默认：50001
+#
+#    Transmogrification.SetCostModifier
+#        默认的的乘数（所有费用相加）默认：3
+#
+#    Transmogrification.SetCopperCost
+#        成本加上其他的费用，可以是负数，默认：0
+#
+###################################################################################################
+
+Transmogrification.EnableSets = 1
+Transmogrification.MaxSets = 10
+
+Transmogrification.EnableSetInfo = 1
+Transmogrification.SetNpcText = 60000
+
+Transmogrification.SetCostModifier = 3.0
+Transmogrification.SetCopperCost = 0
+
+#
+###################################################################################################
+
+
+###################################################################################################
+################################## BOTS CONFIGURATION ############################################
+###################################################################################################
+# PLAYERBOT CONFIGURATION
+#
+#    Bot.EnablePlayerBots
+#        Disable the bot command and bot menu
+#        Default: 1 - enable
+#                       0 - disable
+
+Bot.EnablePlayerBots = 1
+
+#    Bot.FollowDistanceMin
+#    Bot.FollowDistanceMax
+#        Min. and max. follow distance for bots
+#        Default: 0.5 / 2.0
+
+Bot.FollowDistanceMin = 0.5
+Bot.FollowDistanceMax = 1.0
+
+#    Bot.DebugWhisper
+#        Enable debug output by whispering master
+#        Default: 0 - off
+#                 1 - on
+
+Bot.DebugWhisper = 0
+
+#    Bot.MaxPlayerbots
+#        Limits the number of bots per account (Max 9)
+#        Default: 9
+
+Bot.MaxPlayerBots = 9
+
+#    Bot.MaxLevelDiff
+#        Maximum level difference between summoner and bot
+#        Default: 79
+
+Bot.MaxLevelDiff = 79
+
+#    Bot.Collect.Combat
+#    Bot.Collect.Quest
+#    Bot.Collect.Profession
+#    Bot.Collect.Loot
+#    Bot.Collect.Skin
+#    Bot.Collect.Objects
+#        Enable collection options for after combat, quest items, profession, all loot, skin, or nearby objects
+#                 0 - off
+#        Default: 1 - on
+
++Bot.Collect.Combat = 1
++Bot.Collect.Quest = 1
++Bot.Collect.Profession = 1
++Bot.Collect.Loot = 1
++Bot.Collect.Skin = 1
+Bot.Collect.Objects = 1
+
+#    Bot.Collect.Distance
+#        Default distance that bots will search within for collection.
+#        Default: 25 (cannot be more than DistanceMax)
+#
+#    Bot.Collect.DistanceMax
+#        Maximum distance that can be configured for bots to collect objects. Allowing a higher
+#        distance could increase processor usage for object searching.
+#                 1-100
+#        Default: 30
+
+Bot.Collect.Distance = 25
+Bot.Collect.DistanceMax = 30
+
+#    Bot.SellGarbage
+#        Allow bots to automatically sell all [GRAY|POOR] quality items as the player activates vendor
+#        Default: 0 - off
+#                 1 - on
+
+Bot.SellGarbage = 0
+
+#    Bot.SellAll.LevelDiff
+#         If 'sell all' command is given prior to selling, bots will sell all low level white items.. this number is the number
+#         of levels LOWER than the bots level the Item must be before bot will sell it.
+#         Default: 10 (10 levels lower than the bot) Don't set to 0 or they'll sell everything! *SellGarbage must be set to 1 to use this*
+
+Bot.SellAll.LevelDiff = 10
+
+#    Bot.LootMethod
+#        Type of loot method
+#        Default: 2
+#        0 = Free for all
+#        1 = Round robin
+#        2 = Master loot
+#        3 = Group loot
+#        4 = Need before greed
+
+Bot.LootMethod = 2
+
+#    Bot.ChangeFaction
+#        Change bot's faction on login (thy will restore their faction of logout)
+#        Default = 1
+#        0 = false - Do not change
+#        1 = true - Bot and his npcbots will change their faction to master's
+
+Bot.ChangeFaction = 1
+
+#
+###################################################################################################
+
+###################################################################################################
+# NPCBOT CONFIGURATION
+#
+#     Bot.EnableNpcBots
+#        Enable NpcBot system
+#        Default: 1 - enable
+#                       0 - disable
+
+Bot.EnableNpcBots = 1
+
+#    Bot.MaxNpcBots
+#        Maximum number of Npc Bots allowed per character (disabled for GM accounts)
+#        Default: 1
+#        Recomended: 4
+#        Max: 9
+#        Absolute Max: 39
+
+Bot.MaxNpcBots = 1
+
+#    Bot.MaxNpcBotsPerClass
+#        Maximum Npc Bots of each class allowed per character
+#        If set to 0, no restriction
+#        Default: 1
+
+Bot.MaxNpcBotsPerClass = 1
+
+#    Bot.BaseFollowDistance
+#        Default follow distance set at login
+#        Default: 30
+
+Bot.BaseFollowDistance = 30
+
+#    Bot.XpReductionPercent
+#        Since bot party can be pretty large, it can become an exploit to farm xp so you can reduce xp gain here
+#        PERCENT of  'XP.KILL'  reward reduction from each Npc Bots used (Starting with second)
+#        Example:
+#            You have 3 bots, xp reduction is 20 then reduction will be ((3-1)*20) = 40%; 60% exp gained only
+#        Note: Minimum xp rate will be 10%
+#        Min: 0
+#        Max: 90
+#        Default: 0
+
+Bot.XpReductionPercent = 0
+
+#    Bot.HealTargetIconsMask
+#        Icon number bitmask which bots are using to search for additional targets to heal (out of party)
+#        1 - Star
+#        2 - Circle
+#        4 - Diamond
+#        8 - Triangle
+#        16 - Moon
+#        32 - Square
+#        64 - Cross
+#        128 - Skull
+#        Example: to check Star, Triangle and Square we need 1+8+32 = 41
+#        Note that many creatures cannot accept heal
+#        Min: 0 (Disable)
+#        Max: 255 (Any Icon)
+#        Default: 8 (Triangle)
+
+Bot.HealTargetIconsMask = 8
+
+#    Bot.DamageMult
+#        Myltiplier for bot's damage dealt. Allows to balance bots' compared to players' damage
+#        Any damage done by bots will be modified
+#        Range: 0.01 - 10.0
+#        Default: 1.0
+
+Bot.DamageMult.Melee = 1.0
+Bot.DamageMult.Spell = 1.0
+
+#    Bot.EnableIn... Arenas/BGs/Dungeons/Raids
+#        Allows to restrict bots usage in PvE and/or PvP
+#        Default: true for all
+
+Bot.EnableInArenas = 1
+Bot.EnableInBGs = 1
+Bot.EnableInDungeons = 1
+Bot.EnableInRaids = 1
+
+#    Bot.InstanceLimit... Dungeons/Raids
+#        If set to 1 will apply instance players limitation to bots
+#        Default: false for all
+
+Bot.InstanceLimit.Dungeons = 0
+Bot.InstanceLimit.Raids = 0
+
+#    Bot.Cost
+#        Bot recruitment cost (in copper)
+#        Note: this value is set for lvl 80 characters. Cost will be reduced for lower levels
+#        Default: 0
+
+Bot.Cost = 0
+
+#    Bot.PvP
+#        If set to 0 bots will not attack  players or other bots
+#        Default: 1
+
+Bot.PvP = 1
+
+#
+###################################################################################################
