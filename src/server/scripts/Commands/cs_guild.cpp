@@ -261,45 +261,45 @@ public:
 			else
 				handler->PSendSysMessage(LANG_GUILDINFO_XP_INFO, guild->GetCurrentXP(), guild->GetXpForNextLevel());
 
-			handler->PSendSysMessage("已经获取的奖励：.");
+			handler->PSendSysMessage("已经获取的奖励： ");
 
 			if (guild->GetLevel() > 0)
 			{
 				if (guild->HasLevelForBonus(GUILD_BONUS_GOLD_1))
-					handler->PSendSysMessage("黄金奖励 [等级 1].");
+					handler->PSendSysMessage("黄金奖励 [等级 1] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_XP_1))
-					handler->PSendSysMessage("经验奖励 [等级 1].");
+					handler->PSendSysMessage("经验奖励 [等级 1] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_SCHNELLER_GEIST))
-					handler->PSendSysMessage("灵魂移动速度提高.");
+					handler->PSendSysMessage("灵魂移动速度提高 ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_1))
-					handler->PSendSysMessage("修理打折 [等级 1].");
+					handler->PSendSysMessage("修理打折 [等级 1] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_GOLD_2))
-					handler->PSendSysMessage("黄金奖励 [等级 2].");
+					handler->PSendSysMessage("黄金奖励 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_REITTEMPO_1))
-					handler->PSendSysMessage("坐骑速度提升 [等级 1].");
+					handler->PSendSysMessage("坐骑速度提升 [等级 1] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_RUF_1))
-					handler->PSendSysMessage("声望提升 [等级 1].");
+					handler->PSendSysMessage("声望提升 [等级 1] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_XP_2))
-					handler->PSendSysMessage("经验奖励 [等级 2].");
+					handler->PSendSysMessage("经验奖励 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_2))
-					handler->PSendSysMessage("修理打折 [等级 2].");
+					handler->PSendSysMessage("修理打折 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_REITTEMPO_2))
-					handler->PSendSysMessage("坐骑速度提升 [等级 2].");
+					handler->PSendSysMessage("坐骑速度提升 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_2))
-					handler->PSendSysMessage("声望提升 [等级 2].");
+					handler->PSendSysMessage("声望提升 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_EHRE_1))
-					handler->PSendSysMessage("荣誉提升 [等级 1].");
+					handler->PSendSysMessage("荣誉提升 [等级 1] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_EHRE_2))
-					handler->PSendSysMessage("荣誉提升 [等级 2].");
+					handler->PSendSysMessage("荣誉提升 [等级 2] ");
 			}
 			else
-				handler->PSendSysMessage("None");
+				handler->PSendSysMessage("无 ");
 
 			return true;
 		}
 		else
 		{
-			handler->PSendSysMessage("你没有在一个公会中。.");
+			handler->PSendSysMessage("你没有在一个公会中。 ");
 			return false;
 		}
 	}
