@@ -3145,7 +3145,7 @@ void Player::InitTalentForLevel()
         }
 
         uint32 talentPointsForLevel = CalculateTalentsPoints();
-		/* 去除天赋点重新登录还原的检测
+		// 去除天赋点重新登录还原的检测
         // if used more that have then reset
         if (m_usedTalentCount > talentPointsForLevel)
         {
@@ -3157,7 +3157,7 @@ void Player::InitTalentForLevel()
         // else update amount of free points
         else
             SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
-    */
+ ///*
 	}
 	
     if (!GetSession()->PlayerLoading())
