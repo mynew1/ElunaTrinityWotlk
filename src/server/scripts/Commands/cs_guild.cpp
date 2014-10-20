@@ -285,7 +285,7 @@ public:
 					handler->PSendSysMessage("修理打折 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_REITTEMPO_2))
 					handler->PSendSysMessage("坐骑速度提升 [等级 2] ");
-				if (guild->HasLevelForBonus(GUILD_BONUS_REPERATUR_2))
+				if (guild->HasLevelForBonus(GUILD_BONUS_RUF_2))
 					handler->PSendSysMessage("声望提升 [等级 2] ");
 				if (guild->HasLevelForBonus(GUILD_BONUS_EHRE_1))
 					handler->PSendSysMessage("荣誉提升 [等级 1] ");
