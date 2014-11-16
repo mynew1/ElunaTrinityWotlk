@@ -17,168 +17,6 @@ namespace LuaPlayer
         return 1;
     }
 
-	int SetStats(lua_State* L, Player* player)
-	{
-		uint16 StatsName = Eluna::CHECKVAL<uint16>(L, 2);
-		int32 StatsNum = Eluna::CHECKVAL<int32>(L, 3);
-		bool apply = Eluna::CHECKVAL<bool>(L, 4, true);
-		switch (StatsName)
-		{
-		case 0:
-			player->HandleStatModifier(UNIT_MOD_STAT_STRENGTH, BASE_VALUE, float(StatsNum), apply);//set力量
-			player->ApplyStatBuffMod(STAT_STRENGTH, float(StatsNum), apply);
-			break;
-		case 1:
-			player->HandleStatModifier(UNIT_MOD_STAT_AGILITY, BASE_VALUE, float(StatsNum), apply);//set敏捷
-			player->ApplyStatBuffMod(STAT_AGILITY, float(StatsNum), apply);
-			break;
-		case 2:
-			player->HandleStatModifier(UNIT_MOD_STAT_STAMINA, BASE_VALUE, float(StatsNum), apply);//set耐力
-			player->ApplyStatBuffMod(STAT_STAMINA, float(StatsNum), apply);
-			break;
-		case 3:
-			player->HandleStatModifier(UNIT_MOD_STAT_INTELLECT, BASE_VALUE, float(StatsNum), apply);//set智力
-			player->ApplyStatBuffMod(STAT_INTELLECT, float(StatsNum), apply);
-			break;
-		case 4:
-			player->HandleStatModifier(UNIT_MOD_STAT_SPIRIT, BASE_VALUE, float(StatsNum), apply);//set精神
-			player->ApplyStatBuffMod(STAT_SPIRIT, float(StatsNum), apply);
-			break;
-		case 12://防御等级
-			player->ApplyRatingMod(CR_DEFENSE_SKILL, int32(StatsNum), apply);
-			break;
-		case 13://躲闪等级
-			player->ApplyRatingMod(CR_DODGE, int32(StatsNum), apply);
-			break;
-		case 14://招架等级
-			player->ApplyRatingMod(CR_PARRY, int32(StatsNum), apply);
-			break;
-		case 15://盾牌格挡
-			player->ApplyRatingMod(CR_BLOCK, int32(StatsNum), apply);
-			break;
-		case 16://近战命中
-			player->ApplyRatingMod(CR_HIT_MELEE, int32(StatsNum), apply);
-			break;
-		case 17://远程命中等级
-			player->ApplyRatingMod(CR_HIT_RANGED, int32(StatsNum), apply);
-			break;
-		case 18://法术命中等级
-			player->ApplyRatingMod(CR_HIT_SPELL, int32(StatsNum), apply);
-			break;
-		case 19://近战暴击
-			player->ApplyRatingMod(CR_CRIT_MELEE, int32(StatsNum), apply);
-			break;
-		case 20://远程暴击等级
-			player->ApplyRatingMod(CR_CRIT_RANGED, int32(StatsNum), apply);
-			break;
-		case 21://法术暴击等级
-			player->ApplyRatingMod(CR_CRIT_SPELL, int32(StatsNum), apply);
-			break;
-		case 22://近战躲闪等级
-			player->ApplyRatingMod(CR_HIT_TAKEN_MELEE, int32(StatsNum), apply);
-			break;
-		case 23://远程躲闪等级
-			player->ApplyRatingMod(CR_HIT_TAKEN_RANGED, int32(StatsNum), apply);
-			break;
-		case 24://法术躲闪等级
-			player->ApplyRatingMod(CR_HIT_TAKEN_SPELL, int32(StatsNum), apply);
-			break;
-		case 25://近战暴击躲闪等级
-			player->ApplyRatingMod(CR_CRIT_TAKEN_MELEE, int32(StatsNum), apply);
-			break;
-		case 26://远程暴击躲闪等级
-			player->ApplyRatingMod(CR_CRIT_TAKEN_RANGED, int32(StatsNum), apply);
-			break;
-		case 27://法术暴击躲闪等级
-			player->ApplyRatingMod(CR_CRIT_TAKEN_SPELL, int32(StatsNum), apply);
-			break;
-		case 28://近战急速
-			player->ApplyRatingMod(CR_HASTE_MELEE, int32(StatsNum), apply);
-			break;
-		case 29://远程急速
-			player->ApplyRatingMod(CR_HASTE_RANGED, int32(StatsNum), apply);
-			break;
-		case 30://法术急速
-			player->ApplyRatingMod(CR_HASTE_SPELL, int32(StatsNum), apply);
-			break;
-		case 31://命中等级
-			player->ApplyRatingMod(CR_HIT_MELEE, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_HIT_RANGED, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_HIT_SPELL, int32(StatsNum), apply);
-			break;
-		case 32://暴击等级
-			player->ApplyRatingMod(CR_CRIT_MELEE, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_CRIT_RANGED, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_CRIT_SPELL, int32(StatsNum), apply);
-			break;
-		case 33://命中躲闪等级
-			player->ApplyRatingMod(CR_HIT_TAKEN_MELEE, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_HIT_TAKEN_RANGED, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_HIT_TAKEN_SPELL, int32(StatsNum), apply);
-			break;
-		case 34://暴击躲闪等级
-			player->ApplyRatingMod(CR_CRIT_TAKEN_MELEE, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_CRIT_TAKEN_RANGED, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_CRIT_TAKEN_SPELL, int32(StatsNum), apply);
-			break;
-		case 35://韧性等级
-			player->ApplyRatingMod(CR_CRIT_TAKEN_MELEE, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_CRIT_TAKEN_RANGED, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_CRIT_TAKEN_SPELL, int32(StatsNum), apply);
-			break;
-		case 36://急速等级
-			player->ApplyRatingMod(CR_HASTE_MELEE, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_HASTE_RANGED, int32(StatsNum), apply);
-			player->ApplyRatingMod(CR_HASTE_SPELL, int32(StatsNum), apply);
-			break;
-		case 37://精准等级
-			player->ApplyRatingMod(CR_EXPERTISE, int32(StatsNum), apply);
-			break;
-		case 38://攻击强度
-			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER, TOTAL_VALUE, float(StatsNum), apply);
-			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER_RANGED, TOTAL_VALUE, float(StatsNum), apply);
-			break;
-		case 39://远程攻击强度
-			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER_RANGED, TOTAL_VALUE, float(StatsNum), apply);
-			break;
-		case 43://5秒回蓝
-			player->ApplyManaRegenBonus(int32(StatsNum), apply);
-			break;
-		case 44://护甲穿透
-			player->ApplyRatingMod(CR_ARMOR_PENETRATION, int32(StatsNum), apply);
-			break;
-		case 45://法术伤害
-			player->ApplySpellPowerBonus(int32(StatsNum), apply);
-			break;
-		case 46://法术治疗效果
-			player->ApplyHealthRegenBonus(int32(StatsNum), apply);
-			break;
-		case 47://法术穿透
-			player->ApplySpellPenetrationBonus(StatsNum, apply);
-			break;
-		case 48://法术格挡？
-			player->HandleBaseModValue(SHIELD_BLOCK_VALUE, FLAT_MOD, float(StatsNum), apply);
-			break;
-		case 998:
-			player->HandleStatModifier(UNIT_MOD_HEALTH, BASE_VALUE, float(StatsNum), apply);
-			break;//HP
-		case 997:
-			player->HandleStatModifier(UNIT_MOD_MANA, BASE_VALUE, float(StatsNum), apply);
-			break;//MP
-		case 999://set法术强度
-			player->ApplySpellPowerBonus(int32(StatsNum), apply);
-			break;
-		case 1000://获得一个物品的属性
-			ItemTemplate const* Proto;
-			Proto = sObjectMgr->GetItemTemplate(UINT32(StatsNum));
-			player->_ApplyItemBonuses(Proto, 1, apply);
-			break;
-		default:
-			break;
-		}
-		return 0;
-	}
-
     int HasTalent(lua_State* L, Player* player)
     {
         uint32 talentId = Eluna::CHECKVAL<uint32>(L, 2);
@@ -2088,6 +1926,176 @@ namespace LuaPlayer
         }
         return 0;
     }
+
+	int SetState(lua_State* L, Player* player)
+	{
+		uint16 _StatsName = Eluna::CHECKVAL<uint16>(L, 2);
+		int32 _StatsNum = Eluna::CHECKVAL<int32>(L, 3);
+		bool _apply = Eluna::CHECKVAL<bool>(L, 4, true);
+		int panduan = sEluna->CHECKVAL<int>(L, 4);
+		switch (panduan){
+		case 0: _apply = true; break;
+		case 1: _apply = false; break;
+		}
+		switch (_StatsName)
+		{
+		case 0:
+			player->HandleStatModifier(UNIT_MOD_STAT_STRENGTH, BASE_VALUE, float(_StatsNum), _apply);//set力量
+			player->ApplyStatBuffMod(STAT_STRENGTH, float(_StatsNum), _apply);
+			break;
+		case 1:
+			player->HandleStatModifier(UNIT_MOD_STAT_AGILITY, BASE_VALUE, float(_StatsNum), _apply);//set敏捷
+			player->ApplyStatBuffMod(STAT_AGILITY, float(_StatsNum), _apply);
+			break;
+		case 2:
+			player->HandleStatModifier(UNIT_MOD_STAT_STAMINA, BASE_VALUE, float(_StatsNum), _apply);//set耐力
+			player->ApplyStatBuffMod(STAT_STAMINA, float(_StatsNum), _apply);
+			break;
+		case 3:
+			player->HandleStatModifier(UNIT_MOD_STAT_INTELLECT, BASE_VALUE, float(_StatsNum), _apply);//set智力
+			player->ApplyStatBuffMod(STAT_INTELLECT, float(_StatsNum), _apply);
+			break;
+		case 4:
+			player->HandleStatModifier(UNIT_MOD_STAT_SPIRIT, BASE_VALUE, float(_StatsNum), _apply);//set精神
+			player->ApplyStatBuffMod(STAT_SPIRIT, float(_StatsNum), _apply);
+			break;
+		case 12://防御等级
+			player->ApplyRatingMod(CR_DEFENSE_SKILL, int32(_StatsNum), _apply);
+			break;
+		case 13://躲闪等级
+			player->ApplyRatingMod(CR_DODGE, int32(_StatsNum), _apply);
+			break;
+		case 14://招架等级
+			player->ApplyRatingMod(CR_PARRY, int32(_StatsNum), _apply);
+			break;
+		case 15://盾牌格挡
+			player->ApplyRatingMod(CR_BLOCK, int32(_StatsNum), _apply);
+			break;
+		case 16://近战命中
+			player->ApplyRatingMod(CR_HIT_MELEE, int32(_StatsNum), _apply);
+			break;
+		case 17://远程命中等级
+			player->ApplyRatingMod(CR_HIT_RANGED, int32(_StatsNum), _apply);
+			break;
+		case 18://法术命中等级
+			player->ApplyRatingMod(CR_HIT_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 19://近战暴击
+			player->ApplyRatingMod(CR_CRIT_MELEE, int32(_StatsNum), _apply);
+			break;
+		case 20://远程暴击等级
+			player->ApplyRatingMod(CR_CRIT_RANGED, int32(_StatsNum), _apply);
+			break;
+		case 21://法术暴击等级
+			player->ApplyRatingMod(CR_CRIT_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 22://近战躲闪等级
+			player->ApplyRatingMod(CR_HIT_TAKEN_MELEE, int32(_StatsNum), _apply);
+			break;
+		case 23://远程躲闪等级
+			player->ApplyRatingMod(CR_HIT_TAKEN_RANGED, int32(_StatsNum), _apply);
+			break;
+		case 24://法术躲闪等级
+			player->ApplyRatingMod(CR_HIT_TAKEN_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 25://近战暴击躲闪等级
+			player->ApplyRatingMod(CR_CRIT_TAKEN_MELEE, int32(_StatsNum), _apply);
+			break;
+		case 26://远程暴击躲闪等级
+			player->ApplyRatingMod(CR_CRIT_TAKEN_RANGED, int32(_StatsNum), _apply);
+			break;
+		case 27://法术暴击躲闪等级
+			player->ApplyRatingMod(CR_CRIT_TAKEN_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 28://近战急速
+			player->ApplyRatingMod(CR_HASTE_MELEE, int32(_StatsNum), _apply);
+			break;
+		case 29://远程急速
+			player->ApplyRatingMod(CR_HASTE_RANGED, int32(_StatsNum), _apply);
+			break;
+		case 30://法术急速
+			player->ApplyRatingMod(CR_HASTE_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 31://命中等级
+			player->ApplyRatingMod(CR_HIT_MELEE, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_HIT_RANGED, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_HIT_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 32://暴击等级
+			player->ApplyRatingMod(CR_CRIT_MELEE, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_CRIT_RANGED, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_CRIT_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 33://命中躲闪等级
+			player->ApplyRatingMod(CR_HIT_TAKEN_MELEE, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_HIT_TAKEN_RANGED, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_HIT_TAKEN_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 34://暴击躲闪等级
+			player->ApplyRatingMod(CR_CRIT_TAKEN_MELEE, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_CRIT_TAKEN_RANGED, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_CRIT_TAKEN_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 35://韧性等级
+			player->ApplyRatingMod(CR_CRIT_TAKEN_MELEE, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_CRIT_TAKEN_RANGED, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_CRIT_TAKEN_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 36://急速等级
+			player->ApplyRatingMod(CR_HASTE_MELEE, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_HASTE_RANGED, int32(_StatsNum), _apply);
+			player->ApplyRatingMod(CR_HASTE_SPELL, int32(_StatsNum), _apply);
+			break;
+		case 37://精准等级
+			player->ApplyRatingMod(CR_EXPERTISE, int32(_StatsNum), _apply);
+			break;
+		case 38://攻击强度
+			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER, TOTAL_VALUE, float(_StatsNum), _apply);
+			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER_RANGED, TOTAL_VALUE, float(_StatsNum), _apply);
+			break;
+		case 39://远程攻击强度
+			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER_RANGED, TOTAL_VALUE, float(_StatsNum), _apply);
+			break;
+		case 40://only攻击强度
+			player->HandleStatModifier(UNIT_MOD_ATTACK_POWER, TOTAL_VALUE, float(_StatsNum), _apply);
+			break;
+		case 43://5秒回蓝
+			player->ApplyManaRegenBonus(int32(_StatsNum), _apply);
+			break;
+		case 44://护甲穿透
+			player->ApplyRatingMod(CR_ARMOR_PENETRATION, int32(_StatsNum), _apply);
+			break;
+		case 45://法术伤害
+			player->ApplySpellPowerBonus(int32(_StatsNum), _apply);
+			break;
+		case 46://法术治疗效果
+			player->ApplyHealthRegenBonus(int32(_StatsNum), _apply);
+			break;
+		case 47://法术穿透
+			player->ApplySpellPenetrationBonus(_StatsNum, _apply);
+			break;
+		case 48://法术格挡？
+			player->HandleBaseModValue(SHIELD_BLOCK_VALUE, FLAT_MOD, float(_StatsNum), _apply);
+			break;
+		case 998:
+			player->HandleStatModifier(UNIT_MOD_HEALTH, BASE_VALUE, float(_StatsNum), _apply);
+			break;//HP
+		case 997:
+			player->HandleStatModifier(UNIT_MOD_MANA, BASE_VALUE, float(_StatsNum), _apply);
+			break;//MP
+		case 999://set法术强度
+			player->ApplySpellPowerBonus(int32(_StatsNum), _apply);
+			break;
+		case 1000://获得一个物品的属性
+			ItemTemplate const* Proto;
+			Proto = sObjectMgr->GetItemTemplate(UINT32(_StatsNum));
+			player->_ApplyItemBonuses(Proto, 1, _apply);
+			break;
+		default:
+			break;
+		}
+		return 0;
+	}
 
     int Teleport(lua_State* L, Player* player)
     {

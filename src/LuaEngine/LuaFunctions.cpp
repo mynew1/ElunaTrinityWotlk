@@ -511,7 +511,7 @@ ElunaRegister<Player> PlayerMethods[] =
 	{ "SetFreeTalentPoints", &LuaPlayer::SetFreeTalentPoints },   // :SetFreeTalentPoints(points) - Sets the amount of unused talent points
 	{ "SetGuildRank", &LuaPlayer::SetGuildRank },                 // :SetGuildRank(rank) - Sets player's guild rank
 	// {"SetMovement", &LuaPlayer::SetMovement},                // :SetMovement(type) - Sets player's movement type
-	{ "SetStats", &LuaPlayer::SetStats },
+	{ "SetState", &LuaPlayer::SetState },
 	{ "SetSkill", &LuaPlayer::SetSkill },                         // :SetSkill(skill, step, currVal, maxVal) - Sets the skill's boundaries and value
     { "SetFactionForRace", &LuaPlayer::SetFactionForRace },       // :SetFactionForRace(race) - Sets the faction by raceID
     { "SetDrunkValue", &LuaPlayer::SetDrunkValue },               // :SetDrunkValue(newDrunkValue) - Sets drunkness value
