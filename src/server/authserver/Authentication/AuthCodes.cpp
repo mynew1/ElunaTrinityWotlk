@@ -20,6 +20,7 @@
 
 namespace AuthHelper
 {
+	//控制可以登入的版本号
     static RealmBuildInfo const PostBcAcceptedClientBuilds[] =
     {
         {15595, 4, 3, 4, ' '},
