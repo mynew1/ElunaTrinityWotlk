@@ -360,23 +360,23 @@ bool ReputationMgr::SetOneFactionReputation(FactionEntry const* factionEntry, in
     if (itr != _factions.end())
     {
         int32 BaseRep = GetBaseReputation(factionEntry);
-
         if (incremental)
         {
             // int32 *= float cause one point loss?
             standing = int32(floor((float)standing * sWorld->getRate(RATE_REPUTATION_GAIN) + 0.5f));
             standing += itr->second.Standing + BaseRep;
         }
-		/*
+
 		//Guild-Level-System (Bonus: Ruf)
+		
 		if (Guild* guild = _player->GetGuild())
 		{
 			if (guild->HasLevelForBonus(GUILD_BONUS_RUF_1))
-				standing += uint32(standing*0.05f);
+				standing = uint32(standing +50);
 			if (guild->HasLevelForBonus(GUILD_BONUS_RUF_2))
-				standing += uint32(standing*0.1f);
+				standing = uint32(standing + 100);
 		}
-*/
+
         if (standing > Reputation_Cap)
             standing = Reputation_Cap;
         else if (standing < Reputation_Bottom)

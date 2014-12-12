@@ -3145,19 +3145,18 @@ void Player::InitTalentForLevel()
         }
 
         uint32 talentPointsForLevel = CalculateTalentsPoints();
-		// 去除天赋点重新登录还原的检测
         // if used more that have then reset
-        if (m_usedTalentCount > talentPointsForLevel)
+        if (m_usedTalentCount > talentPointsForLevel) //检查已经使用的天赋是否大于本应该获取的数量 如果大于的话那么再次检查是否有RBAC权限
         {
-            if (!GetSession()->HasPermission(rbac::RBAC_PERM_SKIP_CHECK_MORE_TALENTS_THAN_ALLOWED))
-                ResetTalents(true);
+            if (!GetSession()->HasPermission(rbac::RBAC_PERM_SKIP_CHECK_MORE_TALENTS_THAN_ALLOWED)) //检查是否拥有权限 
+                ResetTalents(true);//没有RBAC权限的话重置
             else
                 SetFreeTalentPoints(0);
         }
         // else update amount of free points
-        else
-            SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);
- ///*
+        /*else
+			//上面的检查没查到额外多使用了天赋点的话 给予玩家天赋数：（总应该获取的天赋-已使用的）
+            SetFreeTalentPoints(talentPointsForLevel - m_usedTalentCount);*/
 	}
 	
     if (!GetSession()->PlayerLoading())

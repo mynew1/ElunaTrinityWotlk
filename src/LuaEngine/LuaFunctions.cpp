@@ -93,7 +93,7 @@ void RegisterGlobals(lua_State* L)
     lua_register(L, "CharDBExecute", &LuaGlobalFunctions::CharDBExecute);                                   // CharDBExecute(sql) - Executes given SQL query to character database (not instant)
     lua_register(L, "AuthDBQuery", &LuaGlobalFunctions::AuthDBQuery);                                       // AuthDBQuery(sql) - Executes given SQL query to auth/logon database instantly and returns a QueryResult object
     lua_register(L, "AuthDBExecute", &LuaGlobalFunctions::AuthDBExecute);                                   // AuthDBExecute(sql) - Executes given SQL query to auth/logon database (not instant)
-    lua_register(L, "CreateLuaEvent", &LuaGlobalFunctions::CreateLuaEvent);                                 // CreateLuaEvent(function, delay, calls) - Creates a global timed event. Returns Event ID. Calls set to 0 calls infinitely.
+    lua_register(L, "CreateLuaEvent", &LuaGlobalFunctions::CreateLuaEvent);//创建事件（可延时之类的）       // CreateLuaEvent(function, delay, calls) - Creates a global timed event. Returns Event ID. Calls set to 0 calls infinitely.
     lua_register(L, "RemoveEventById", &LuaGlobalFunctions::RemoveEventById);                               // RemoveEventById(eventId, [all_events]) - Removes a global timed event by it's ID. If all_events is true, can remove any timed event by ID (unit, gameobject, global..)
     lua_register(L, "RemoveEvents", &LuaGlobalFunctions::RemoveEvents);                                     // RemoveEvents([all_events]) - Removes all global timed events. Removes all timed events (unit, gameobject, global) if all_events is true
     lua_register(L, "PerformIngameSpawn", &LuaGlobalFunctions::PerformIngameSpawn);                         // PerformIngameSpawn(spawntype, entry, mapid, instanceid, x, y, z, o[, save, DurOrResptime, phase]) - spawntype: 1 Creature, 2 Object. DurOrResptime is respawntime for gameobjects and despawntime for creatures if creature is not saved. Returns spawned creature/gameobject
@@ -525,13 +525,13 @@ ElunaRegister<Player> PlayerMethods[] =
 #endif
 
     // Boolean
-    { "IsInGroup", &LuaPlayer::IsInGroup },                                               // :IsInGroup()
-    { "IsInGuild", &LuaPlayer::IsInGuild },                                               // :IsInGuild()
-    { "IsGM", &LuaPlayer::IsGM },                                                         // :IsGM()
-    { "IsAlliance", &LuaPlayer::IsAlliance },                                             // :IsAlliance()
-    { "IsHorde", &LuaPlayer::IsHorde },                                                   // :IsHorde()
+    { "IsInGroup", &LuaPlayer::IsInGroup },                                               // :IsInGroup()	是否在团队
+    { "IsInGuild", &LuaPlayer::IsInGuild },                                               // :IsInGuild()	是否在公会
+    { "IsGM", &LuaPlayer::IsGM },                                                         // :IsGM()		是否是GM
+    { "IsAlliance", &LuaPlayer::IsAlliance },                                             // :IsAlliance()	是否是联盟
+    { "IsHorde", &LuaPlayer::IsHorde },                                                   // :IsHorde()		是否部落
 #ifndef CLASSIC
-    { "HasTitle", &LuaPlayer::HasTitle },                                                 // :HasTitle(id)
+    { "HasTitle", &LuaPlayer::HasTitle },                                                 // :HasTitle(id)	
 #endif
     { "HasItem", &LuaPlayer::HasItem },                                                   // :HasItem(itemId[, count, check_bank]) - Returns true if the player has the item(itemId) and specified count, else it will return false
     { "Teleport", &LuaPlayer::Teleport },                                                 // :Teleport(Map, X, Y, Z, O) - Teleports player to specified co - ordinates. Returns true if success and false if not

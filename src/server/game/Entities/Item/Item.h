@@ -155,6 +155,7 @@ enum SellResult
 // -1 from client enchantment slot number
 enum EnchantmentSlot
 {
+	//¸½Ä§²Û±ê¼Ç
     PERM_ENCHANTMENT_SLOT           = 0,
     TEMP_ENCHANTMENT_SLOT           = 1,
     SOCK_ENCHANTMENT_SLOT           = 2,
