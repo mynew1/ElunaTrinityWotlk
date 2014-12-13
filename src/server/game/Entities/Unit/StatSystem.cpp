@@ -14,7 +14,9 @@
  *
  * You should have received a copy of the GNU General Public License along
  * with this program. If not, see <http://www.gnu.org/licenses/>.
- */
+职业收益
+
+*/
 
 #include "Unit.h"
 #include "Player.h"
@@ -178,7 +180,7 @@ void Player::ApplySpellPowerBonus(int32 amount, bool apply)
         ApplyModUInt32Value(PLAYER_FIELD_MOD_DAMAGE_DONE_POS + i, amount, apply);
 }
 
-void Player::UpdateSpellDamageAndHealingBonus()
+void Player::UpdateSpellDamageAndHealingBonus() //法伤和治疗
 {
     // Magic damage modifiers implemented in Unit::SpellDamageBonusDone
     // This information for client side use only
@@ -241,7 +243,7 @@ void Player::UpdateResistances(uint32 school)
         UpdateArmor();
 }
 
-void Player::UpdateArmor()
+void Player::UpdateArmor() //护甲
 {
     UnitMods unitMod = UNIT_MOD_ARMOR;
 
@@ -269,7 +271,7 @@ void Player::UpdateArmor()
     UpdateAttackPowerAndDamage();                           // armor dependent auras update for SPELL_AURA_MOD_ATTACK_POWER_OF_ARMOR
 }
 
-float Player::GetHealthBonusFromStamina()
+float Player::GetHealthBonusFromStamina()//返回耐力加成血量
 {
     float stamina = GetStat(STAT_STAMINA);
     float baseStam = std::min(20.0f, stamina);
@@ -278,7 +280,7 @@ float Player::GetHealthBonusFromStamina()
     return baseStam + (moreStam*10.0f);
 }
 
-float Player::GetManaBonusFromIntellect()
+float Player::GetManaBonusFromIntellect()//智力加成蓝量
 {
     float intellect = GetStat(STAT_INTELLECT);
 
@@ -345,7 +347,7 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
             case CLASS_ROGUE:
                 val2 = level + GetStat(STAT_AGILITY) - 10.0f;
                 break;
-            case CLASS_WARRIOR:
+            case CLASS_WARRIOR://战士
                 val2 = level + GetStat(STAT_AGILITY) - 10.0f;
                 break;
             case CLASS_DRUID:
@@ -367,7 +369,7 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
         switch (getClass())
         {
             case CLASS_WARRIOR:
-                val2 = level * 3.0f + GetStat(STAT_STRENGTH) * 2.0f - 20.0f;
+				val2 = level * 3.0f + GetStat(STAT_STRENGTH) * 2.0f  - 20.0f;
                 break;
             case CLASS_PALADIN:
                 val2 = level * 3.0f + GetStat(STAT_STRENGTH) * 2.0f - 20.0f;
@@ -508,7 +510,7 @@ void Player::UpdateAttackPowerAndDamage(bool ranged)
     }
 }
 
-void Player::UpdateShieldBlockValue()
+void Player::UpdateShieldBlockValue()//盾牌格挡
 {
     SetUInt32Value(PLAYER_SHIELD_BLOCK, GetShieldBlockValue());
 }
@@ -574,9 +576,9 @@ void Player::CalculateMinMaxDamage(WeaponAttackType attType, bool normalized, bo
 
 void Player::UpdateDefenseBonusesMod()
 {
-    UpdateBlockPercentage();
-    UpdateParryPercentage();
-    UpdateDodgePercentage();
+    UpdateBlockPercentage();//格挡
+    UpdateParryPercentage();//招架
+    UpdateDodgePercentage();//躲闪
 }
 
 void Player::UpdateBlockPercentage()
@@ -1294,7 +1296,7 @@ void Guardian::UpdateMaxPower(Powers power)
     SetMaxPower(power, uint32(value));
 }
 
-void Guardian::UpdateAttackPowerAndDamage(bool ranged)
+void Guardian::UpdateAttackPowerAndDamage(bool ranged) //更新攻强和法术伤害
 {
     if (ranged)
         return;

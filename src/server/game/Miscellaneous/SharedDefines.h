@@ -111,17 +111,17 @@ enum Races
 enum Classes
 {
     CLASS_NONE          = 0,
-    CLASS_WARRIOR       = 1,
-    CLASS_PALADIN       = 2,
-    CLASS_HUNTER        = 3,
-    CLASS_ROGUE         = 4,
-    CLASS_PRIEST        = 5,
-    CLASS_DEATH_KNIGHT  = 6,
-    CLASS_SHAMAN        = 7,
-    CLASS_MAGE          = 8,
-    CLASS_WARLOCK       = 9,
+    CLASS_WARRIOR       = 1,	//战士
+    CLASS_PALADIN       = 2,	//骑士
+    CLASS_HUNTER        = 3,	//猎人
+    CLASS_ROGUE         = 4,	//盗贼
+    CLASS_PRIEST        = 5,	//牧师
+    CLASS_DEATH_KNIGHT  = 6,	//死亡骑士
+    CLASS_SHAMAN        = 7,	//萨满
+    CLASS_MAGE          = 8,	//法师
+    CLASS_WARLOCK       = 9,	//术士
     //CLASS_UNK           = 10,
-    CLASS_DRUID         = 11
+    CLASS_DRUID         = 11	//德鲁伊
 };
 
 // max+1 for player class
@@ -174,11 +174,11 @@ enum MoneyConstants
 
 enum Stats
 {
-    STAT_STRENGTH                      = 0,
-    STAT_AGILITY                       = 1,
-    STAT_STAMINA                       = 2,
-    STAT_INTELLECT                     = 3,
-    STAT_SPIRIT                        = 4
+    STAT_STRENGTH                      = 0,		//力量
+    STAT_AGILITY                       = 1,		//敏捷
+    STAT_STAMINA                       = 2,		//耐力
+    STAT_INTELLECT                     = 3,		//智力
+    STAT_SPIRIT                        = 4		//精神
 };
 
 #define MAX_STATS                        5
